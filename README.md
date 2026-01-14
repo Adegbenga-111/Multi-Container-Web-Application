@@ -83,4 +83,78 @@ service discovery.
 ### 3. Broken API Responses Due to Mixed Output
 
 **Problem:**  
-API responses contained unexpected output such as:
+API responses contained unexpected output such as: 
+
+**Database connection failed{"status":"ok","message":"Backend API is running"}**
+
+**Root Cause:**  
+The database connection file (`db.php`) was echoing output, while the API entry  point (`index.php`) was also returning JSON. This caused mixed and invalid API responses.
+
+**Solution:**  
+The database connection logic was refactored so that `db.php` performs no output. It now either silently succeeds or returns a structured JSON error and exits.
+All API responses are handled exclusively in `index.php`.
+
+**Result:**  
+The backend now returns clean, valid JSON responses suitable for frontend and API consumers.
+
+---
+
+### 4. Reverse Proxy Misconfiguration in Nginx
+
+**Problem:**  
+Frontend requests to `/api` returned 404 errors even though the backend was
+running correctly.
+
+**Root Cause:**  
+The frontend was attempting to call `/api`, but Nginx was not configured to
+forward these requests to the backend service.
+
+**Solution:**  
+An Nginx reverse proxy configuration was added to route `/api` requests to the
+backend container using its Docker service name.
+
+**Result:**  
+Frontend requests to `/api` are now correctly proxied to the backend service.
+
+---
+
+### 5. YAML Formatting and Indentation Errors
+
+**Problem:**  
+Docker Compose behaved unpredictably, with some services failing to connect to
+the Docker network or being ignored entirely.
+
+**Root Cause:**  
+Incorrect YAML indentation (especially in the `phpMyAdmin` service definition)
+caused Docker Compose to misinterpret the configuration.
+
+**Solution:**  
+The Compose file was reformatted and validated to ensure correct indentation and
+service hierarchy.
+
+**Result:**  
+All services now start correctly and join the same Docker network.
+
+---
+
+### 6. Persistent Database State Causing Credential Mismatch
+
+**Problem:**  
+Changing database credentials in `.env` had no effect, and MySQL continued to
+reject connections.
+
+**Root Cause:**  
+MySQL initialization environment variables are applied only on the first run.
+Existing Docker volumes preserved old credentials.
+
+**Solution:**  
+All containers and volumes were removed using `docker compose down -v`, allowing
+MySQL to reinitialize with the updated credentials.
+
+**Result:**  
+Database credentials are now consistent across services.
+
+---
+
+
+
