@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DevOps Demo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>DevOps Frontend</h1>
+  <p>If you see this, Nginx is working.</p>
+
+  <button onclick="loadBackend()">Call Backend</button>
+  <pre id="result"></pre>
+
+  <script>
+    function loadBackend() {
+      // Call backend through nginx reverse proxy
+      fetch('/api')
+        .then(r => r.json())
+        .then(data => {
+          document.getElementById('result').innerText = JSON.stringify(data, null, 2);
+        })
+        .catch(err => {
+          document.getElementById('result').innerText = 'Error calling backend';
+          console.error(err);
+        });
+    }
+  </script>
+</body>
+</html>
