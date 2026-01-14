@@ -9,3 +9,31 @@ The application is composed of multiple Docker containers running on a custom Do
 ![Alt docker](https://github.com/Adegbenga-111/Multi-Container-Web-Application/blob/main/Screenshot%20(476).png)
 
 Image 1 : Architecture Diagram showing the network flow between container 
+
+
+## 🛠 Tech Stack
+
+- **Docker**  
+  Used to containerize each component of the application, ensuring consistency
+  across development and deployment environments.
+
+- **Docker Compose**  
+  Used to orchestrate multiple containers, define service dependencies,
+  manage networking, and inject environment variables.
+
+- **Nginx**  
+  Serves static frontend assets and acts as a reverse proxy to route `/api`
+  requests to the backend service.
+
+- **PHP 8.2 (Apache)**  
+  Implements the backend API and handles database interactions using PDO.
+
+- **MySQL 8.0**  
+  Provides persistent relational data storage, initialized using SQL scripts
+  and backed by Docker volumes.
+
+- **phpMyAdmin**  
+  Provides a browser-based interface for managing the MySQL database.
+
+- **HTML & CSS**  
+  Used to build a lightweight frontend interface for interacting with the backend API.
