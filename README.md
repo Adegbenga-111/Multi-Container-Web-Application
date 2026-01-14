@@ -5,3 +5,7 @@ The main focus of this project is to practice real-world DevOps concepts  such a
 
 ## Architecture Diagram
 The application is composed of multiple Docker containers running on a custom Docker network. The frontend serves static content and proxies API requests to the backend, which communicates with a MySQL database . 
+
+![Alt docker](https://github.com/Adegbenga-111/Multi-Container-Web-Application/blob/main/Screenshot%20(476).png)
+
+Image 1 : Architecture Diagram showing the network flow between container 
