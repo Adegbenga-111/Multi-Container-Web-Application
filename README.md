@@ -157,4 +157,16 @@ Database credentials are now consistent across services.
 ---
 
 
+## 🧠 DevOps Concepts Demonstrated
 
+- Multi-container orchestration with Docker Compose
+
+- Service-to-service communication via Docker networks
+
+- Environment variable configuration with .env
+
+- Reverse proxy configuration using Nginx
+
+- Handling service startup dependencies
+
+- Persistent data using Docker volumes
