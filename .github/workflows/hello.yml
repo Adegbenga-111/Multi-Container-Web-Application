@@ -10,7 +10,7 @@ jobs:
     env:
       STUDENT_NAME: Gbenga
       LEARNING_PATH: Cloud and DevOps
-      MY_NAME: ${{ env.STUDENT_NAME }
+      MY_NAME: ${{ env.STUDENT_NAME }}
       MY_GOAL: Cloud/DevOps Engineer
     steps:
       - name: Display student name
