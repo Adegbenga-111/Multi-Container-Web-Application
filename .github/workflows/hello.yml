@@ -27,3 +27,8 @@ jobs:
       
       - name: Display variable using MY_GOAL
         run: echo "My goal is to become a $MY_GOAL"
+      
+      - name:  Display a safe message
+        env:
+          MESSAGE: ${{ secrets.STUDENT_MESSAGE }}
+        run: echo "$MESSAGE"
