@@ -10,9 +10,9 @@ jobs:
     steps:
       - name: Print a message
         run: echo "I am learning CI/CD!"
-    steps:
+    
       - name: Print a welcome message
         run: echo "Welcome to GitHub Actions!"
-    steps:
+
       - name: display date and time
         run: date 
