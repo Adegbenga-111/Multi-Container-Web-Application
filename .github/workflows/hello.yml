@@ -12,5 +12,9 @@ jobs:
         run: echo "Starting my CI/CD journey"
 
       - name: Success message
-        if: success()
+        if: github.ref == 'refs/heads/main'
         run: echo "The build is successful"
+
+      - name: Failure message
+        if: github.ref != 'refs/heads/main'
+        run: echo "The build has failed"
