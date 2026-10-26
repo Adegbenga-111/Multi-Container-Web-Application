@@ -1,34 +1,16 @@
 
-name: Environment Variables Exercise
+name: Conditional Execution
 
 on: push
 
 jobs:
-  learn-variables:
+  conditional-job:
     runs-on: ubuntu-latest
 
-    env:
-      STUDENT_NAME: Gbenga
-      LEARNING_PATH: Cloud and DevOps
-      MY_NAME: Adelaja Gbenga Ayomide
-      MY_GOAL: Cloud/DevOps Engineer
     steps:
-      - name: Display student name
-        run: echo "My name is $STUDENT_NAME"
+      - name: Start message
+        run: echo "Starting my CI/CD journey"
 
-      - name: Display learning path
-        run: echo "I am learning $LEARNING_PATH"
-
-      - name: Display both variables
-        run: echo "$STUDENT_NAME is learning $LEARNING_PATH"
-
-      - name: Display variable using MY_NAME
-        run: echo "My name is $MY_NAME"
-      
-      - name: Display variable using MY_GOAL
-        run: echo "My goal is to become a $MY_GOAL"
-      
-      - name:  Display a safe message
-        env:
-          MESSAGE: ${{ secrets.STUDENT_MESSAGE }}
-        run: echo "$MESSAGE"
+      - name: Success message
+        if: success()
+        run: echo "The build is successful"
