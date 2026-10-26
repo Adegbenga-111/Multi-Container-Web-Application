@@ -9,4 +9,4 @@ jobs:
 
     steps:
       - name: Print a message
-        run: echo "Hello! My first GitHub Action is working."
+        run: echo "I am learning CI/CD!"
