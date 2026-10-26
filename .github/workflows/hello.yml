@@ -1,18 +1,29 @@
 
-name: My First Workflow
+name: Environment Variables Exercise
 
 on: push
 
 jobs:
-  hello:
+  learn-variables:
     runs-on: ubuntu-latest
 
+    env:
+      STUDENT_NAME: Gbenga
+      LEARNING_PATH: Cloud and DevOps
+      MY_NAME: ${{ env.STUDENT_NAME }
+      MY_GOAL: Cloud/DevOps Engineer
     steps:
-      - name: Print a message
-        run: echo "I am learning CI/CD!"
-    
-      - name: Print a welcome message
-        run: echo "Welcome to GitHub Actions!"
+      - name: Display student name
+        run: echo "My name is $STUDENT_NAME"
 
-      - name: display date and time
-        run: date 
+      - name: Display learning path
+        run: echo "I am learning $LEARNING_PATH"
+
+      - name: Display both variables
+        run: echo "$STUDENT_NAME is learning $LEARNING_PATH"
+
+      - name: Display variable using MY_NAME
+        run: echo "My name is $MY_NAME"
+      
+      - name: Display variable using MY_GOAL
+        run: echo "My goal is to become a $MY_GOAL"
