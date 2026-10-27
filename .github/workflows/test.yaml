@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Run a simple test
         run: |
-          EXPECTED=4
+          EXPECTED=10
           ACTUAL=$((2 + 2))
 
           echo "Expected: $EXPECTED"
