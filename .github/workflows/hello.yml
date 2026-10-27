@@ -1,20 +1,23 @@
 
-name: Conditional Execution
+name: File Check
 
 on: push
 
 jobs:
-  conditional-job:
+  check-file:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Start message
-        run: echo "Starting my CI/CD journey"
+      - name: Download repository code
+        uses: actions/checkout@v4
 
-      - name: Success message
-        if: github.ref == 'refs/heads/main'
-        run: echo "The build is successful"
+      - name: Check if README exists
+        run: test -f README.md
 
-      - name: Failure message
-        if: github.ref != 'refs/heads/main'
-        run: echo "The build has failed"
+      - name: Report success
+        if: success()
+        run: echo "README.md exists!"
+
+      - name: Report failure
+        if: failure()
+        run: echo "The file check failed."
