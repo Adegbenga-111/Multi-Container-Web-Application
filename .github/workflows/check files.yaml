@@ -1,0 +1,23 @@
+
+name: Parallel Jobs Exercise
+
+on: push
+
+jobs:
+  check-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check README
+        run: test -f README.md
+
+  check-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check frontend Dockerfile
+        run: test -f frontend/Dockerfile
