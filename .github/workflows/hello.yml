@@ -14,10 +14,13 @@ jobs:
       - name: Check if README exists
         run: test -f README.md
 
+      - name: Check if Dockercompose file exists
+        run: test -f docker-compose.yml 
+
       - name: Report success
         if: success()
-        run: echo "README.md exists!"
+        run: echo "All file checks passed!"
 
       - name: Report failure
         if: failure()
-        run: echo "The file check failed."
+        run: echo "All or Some files are missing."
