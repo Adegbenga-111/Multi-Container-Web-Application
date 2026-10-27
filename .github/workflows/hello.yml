@@ -1,26 +1,23 @@
 
-name: File Check
+name: Frontend Docker Build
 
 on: push
 
 jobs:
-  check-file:
+  build-frontend:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download repository code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Check if README exists
-        run: test -f README.md
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-      - name: Check if Dockercompose file exists
-        run: test -f docker-compose.yml 
-
-      - name: Report success
-        if: success()
-        run: echo "All file checks passed!"
-
-      - name: Report failure
-        if: failure()
-        run: echo "All or Some files are missing."
+      - name: Build frontend image
+        uses: docker/build-push-action@v6
+        with:
+          context: dockp1/frontend
+          file: dockp1/frontend/Dockerfile
+          push: false
+          tags: task-manager-frontend:latest
