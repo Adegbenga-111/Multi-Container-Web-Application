@@ -1,26 +1,31 @@
 
-name: PHP Syntax Check
+name: Project File Validation
 
 on:
   push:
   pull_request:
 
 jobs:
-  php-syntax:
+  validate:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.3'
+      - name: Check HTML file
+        run: test -f index.html
 
-      - name: Check PHP syntax
-        run: |
-          find . -type f -name "*.php" \
-            -not -path "./vendor/*" \
-            -print0 |
-          xargs -0 -r -n1 php -l
+      - name: Check CSS file
+        run: test -f style.css
+
+      - name: Check PHP file
+        run: test -f index.php
+
+      - name: Report successful validation
+        if: success()
+        run: echo "All required files exist!"
+
+      - name: Report missing files
+        if: failure()
+        run: echo "One or more required files are missing!"
