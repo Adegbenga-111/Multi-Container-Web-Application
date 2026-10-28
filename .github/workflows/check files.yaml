@@ -14,13 +14,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Check HTML file
-        run: test -f dockp1/frontend/index.HTML
+        run: test -f dockp1/frontend/html/index.html
 
       - name: Check CSS file
-        run: test -f dockp1/frontend/style.css
+        run: test -f dockp1/frontend/html/style.css
 
       - name: Check PHP file
-        run: test -f dockp1/backendS/index.php
+        run: test -f dockp1/backend/src/index.php
 
       - name: Report successful validation
         if: success()
