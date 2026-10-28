@@ -17,7 +17,7 @@ jobs:
         run: test -f dockp1/frontend/html/index.html
 
       - name: Check CSS file
-        run: test -f dockp1/frontend/html/style.css
+        run: test -f dockp1/frontend/html/styles.css
 
       - name: Check PHP file
         run: test -f dockp1/backend/src/index.php
