@@ -1,31 +1,20 @@
-
-name: Job Outputs Demo
+name: PHP Checks
 
 on:
-  push:
-  pull_request:
+  workflow_call:
 
 jobs:
-  prepare:
-    runs-on: ubuntu-latest
-    outputs:
-      project_dir: ${{ steps.set_dir.outputs.project_dir }}
-
-    steps:
-      - name: Set project directory
-        id: set_dir
-        run: echo "project_dir=dockp1" >> "$GITHUB_OUTPUT"
-
-  validate:
-    needs: prepare
+  syntax-check:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Check frontend directory
-        run: test -d "${{ needs.prepare.outputs.project_dir }}/frontend"
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
 
-      - name: Show project directory
-        run: echo "Project directory received successfully."
+      - name: Validate PHP syntax
+        run: php -l /dockp1/backend/src/index.php
