@@ -17,4 +17,4 @@ jobs:
           php-version: '8.3'
 
       - name: Validate PHP syntax
-        run: php -l /dockp1/backend/src/index.php
+        run: php -l dockp1/backend/src/index.php
