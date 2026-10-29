@@ -1,27 +1,31 @@
-name: Project CI
+
+name: Job Outputs Demo
 
 on:
   push:
   pull_request:
 
 jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      project_dir: ${{ steps.set_dir.outputs.project_dir }}
+
+    steps:
+      - name: Set project directory
+        id: set_dir
+        run: echo "project_dir=dockp1" >> "$GITHUB_OUTPUT"
+
   validate:
+    needs: prepare
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Create validation report
-        run: |
-          mkdir -p reports
-          echo "Project validation workflow completed." > reports/validation.txt
-          echo "Repository: $GITHUB_REPOSITORY" >> reports/validation.txt
-          echo "Commit: $GITHUB_SHA" >> reports/validation.txt
+      - name: Check frontend directory
+        run: test -d "${{ needs.prepare.outputs.project_dir }}/frontend"
 
-      - name: Upload validation report
-        uses: actions/upload-artifact@v4
-        with:
-          name: validation-report
-          path: reports/validation.txt
-          retention-days: 7
+      - name: Show project directory
+        run: echo "Project directory received successfully."
