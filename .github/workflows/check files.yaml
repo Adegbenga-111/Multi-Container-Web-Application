@@ -13,10 +13,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Check HTML file
-        run: test -f dockp1/html/frontend/index.html
+        run: test -f \dockp1\frontend\html\index.html
 
       - name: Check CSS file
-        run: test -f dockp1/html/frontend/style.css
+        run: test -f \dockp1\frontend\html\styles.css
 
   php_check:
     needs: file_check
@@ -31,4 +31,4 @@ jobs:
           php-version: '8.3'
 
       - name: Check PHP syntax
-        run: php -l dockp1/src/backend/index.php
+        run: php -l \dockp1\src\backend\index.php
