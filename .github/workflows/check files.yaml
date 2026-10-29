@@ -31,4 +31,4 @@ jobs:
           php-version: '8.3'
 
       - name: Check PHP syntax
-        run: php -l dockp1/backend/scr/index.php
+        run: php -l dockp1/backend/src/index.php
