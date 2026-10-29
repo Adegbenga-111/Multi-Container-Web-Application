@@ -8,4 +8,4 @@ on:
 
 jobs:
   php-checks:
-    uses: ./.github/workflows/check files.yml
+    uses: ./.github/workflows/check files.yaml
